@@ -1,0 +1,263 @@
+/* ===============================
+   Header Container
+   =============================== */
+
+.header__container {
+  display: flex;
+  align-items: center;
+  background-color: #151820;
+  padding: 5px 16px;
+  white-space: nowrap;
+}
+
+/* ===============================
+   Left Side (Logo + Delivery + Search)
+   =============================== */
+
+.header__leftside {
+  display: flex;
+  align-items: center;
+  /* flex: 1; */
+  min-width: 0;
+}
+
+.header__leftside img {
+  max-width: 100px;
+  height: auto;
+  padding: 10px;
+  border: 1px solid transparent;
+}
+
+.header__leftside img:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+/* ===============================
+   Delivery Section
+   =============================== */
+
+.header__delivery {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: white;
+  padding: 10px 0;
+  border: 1px solid transparent;
+}
+
+.header__delivery:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.header__delivery small {
+  font-size: 10px;
+  line-height: 1.2;
+}
+
+.header__delivery strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ===============================
+   Search Box
+   =============================== */
+
+.header__searchBox {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 100px;
+  margin: 0 12px;
+  background-color: white;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.header__searchBox:hover,
+.header__searchBox:focus {
+  box-shadow: 0 0 10px pink;
+}
+
+/* Category Select */
+
+.searchBox__category select {
+  border: none;
+  outline: none;
+  padding: 10px 8px;
+  background-color: #f3f3f3;
+  border-right: 1px solid #ccc;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Input Field */
+
+.header__inputField {
+  flex: 1;
+  min-width: 0;
+}
+
+.header__inputField input {
+  width: 100%;
+  padding: 10px 8px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Search Icon */
+
+.header__searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #febd69;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: black;
+}
+
+/* ===============================
+   Right Side (Language, Account, Orders, Cart)
+   =============================== */
+
+.header__rightside {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: white;
+  flex-shrink: 0;
+}
+
+/* Language */
+
+.header__language {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 15px 0;
+  border: 1px solid transparent;
+}
+
+.header__language img {
+  height: 14px;
+}
+
+.header__language:hover {
+  border: 1px solid white;
+}
+
+/* Account */
+.header__account {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border: 1px solid transparent;
+}
+
+.header__account:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.header__return__orders {
+  padding: 10px 0;
+  border: 1px solid transparent;
+}
+
+.header__return__orders:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.header__account p,
+.header__return__orders p {
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: lighter;
+}
+
+.header__account strong,
+.header__return__orders strong {
+  font-weight: 700;
+}
+
+/* Cart */
+
+.header__cart {
+  display: flex;
+  align-items: end;
+  gap: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  position: relative;
+  padding: 10px 0;
+  border: 1px solid transparent;
+}
+
+.header__cart:hover {
+  border: 1px solid white;
+}
+
+.cartIcon {
+  font-size: 22px;
+}
+
+.header__cart strong {
+  position: absolute;
+  right: 35px;
+  top: -2px;
+}
+
+.header__hamburger {
+  display: none;
+}
+
+/* ==================================
+MEDIA QUERY : Mobile view
+================================== */
+@media (max-width: 768px) {
+  /*  Reset the container to wrap */
+  .header__container {
+    flex-wrap: wrap;
+  }
+
+  .header__rightside {
+    margin-left: auto;
+  }
+
+  .header__leftside {
+    display: flex;
+    align-items: normal;
+  }
+
+  .header__hamburger {
+    display: flex;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  .header__leftside img {
+    max-width: 80px;
+    height: auto;
+    padding: 5px;
+  }
+
+  .header__delivery,
+  .header__language,
+  .header__return__orders {
+    display: none;
+  }
+
+  .header__searchBox {
+    width: 100%;
+    flex-basis: 100%;
+    order: 2;
+    margin: 0;
+  }
+}
