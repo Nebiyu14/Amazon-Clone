@@ -9,7 +9,7 @@
   right: 0;
   position: absolute;
   height: 120px;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #E3E6E6);
   z-index: 2;
 }
 

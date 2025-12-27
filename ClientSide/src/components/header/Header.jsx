@@ -7,6 +7,7 @@ import { MdSearch } from "react-icons/md";
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Subheader from "./Subheader";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -14,7 +15,9 @@ export default function Header() {
       <div className="header__container">
         <div className="header__leftside">
           <GiHamburgerMenu className="header__hamburger" />
-          <img src={logo} alt="Amazon_Logo" className="header__logo" />
+          <Link to="/">
+            <img src={logo} alt="Amazon_Logo" className="header__logo" />
+          </Link>
           <div className="header__delivery">
             <CiLocationOn size={24} />
             <small>
@@ -42,24 +45,30 @@ export default function Header() {
             <span>EN</span>
             <MdOutlineArrowDropDown />
           </div>
-          <div className="header__account">
-            <p>
-              Hello, sign in <br />
-              <strong>Account & Lists</strong>
-            </p>
-            <MdOutlineArrowDropDown />
-          </div>
-          <div className="header__return__orders">
-            <p>
-              Returns <br />
-              <strong>& Orders</strong>
-            </p>
-          </div>
-          <div className="header__cart">
-            <FiShoppingCart size={24} className="cartIcon" />
-            <p>Cart</p>
-            <strong>0</strong>
-          </div>
+          <Link to="/signin">
+            <div className="header__account">
+              <p>
+                Hello, sign in <br />
+                <strong>Account & Lists</strong>
+              </p>
+              <MdOutlineArrowDropDown />
+            </div>
+          </Link>
+          <Link to={"/orders"}>
+            <div className="header__return__orders">
+              <p>
+                Returns <br />
+                <strong>& Orders</strong>
+              </p>
+            </div>
+          </Link>
+          <Link to={"/cart"}>
+            <div className="header__cart">
+              <FiShoppingCart size={24} className="cartIcon" />
+              <p>Cart</p>
+              <strong>0</strong>
+            </div>
+          </Link>
         </div>
       </div>
       <Subheader />

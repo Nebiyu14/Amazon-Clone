@@ -1,0 +1,9 @@
+.sub__product__container {
+    color: black;
+    margin: 40px auto;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    flex-wrap: wrap;
+}

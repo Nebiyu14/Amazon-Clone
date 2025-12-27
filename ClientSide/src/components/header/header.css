@@ -132,6 +132,10 @@
   flex-shrink: 0;
 }
 
+.header__rightside a {
+  text-decoration: none;
+  color: white;
+}
 /* Language */
 
 .header__language {
