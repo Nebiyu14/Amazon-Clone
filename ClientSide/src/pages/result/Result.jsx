@@ -4,25 +4,34 @@ import Layout from "../../components/layout/Layout";
 import { Link, useParams } from "react-router-dom";
 import SingleProduct from "../../components/products/singleProduct/SingleProduct";
 export const base__URL = "https://fakestoreapi.com";
+import useLoading from "../../hooks/useLoading";
+import Loader from "../../components/spinner/Loader";
 function Result() {
   const [categorizedItem, setCategorizedItem] = useState([]);
   const { categoryName } = useParams();
+  const { isLoading, startLoading, stopLoading } = useLoading();
+
   useEffect(() => {
-    try {
-      async function fetchCategory() {
+    async function fetchCategory() {
+      startLoading();
+      try {
         const res = await fetch(
           `${base__URL}/products/category/${categoryName}`
         );
         const data = await res.json();
         setCategorizedItem(data);
+      } catch (error) {
+        console.log("Error fetching categories", error);
+      } finally {
+        stopLoading();
       }
-      fetchCategory();
-    } catch (error) {
-      console.log("Error fetching categories", error);
     }
+    fetchCategory();
   }, []);
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <Layout>
       <div className="result__container">
         <div>
