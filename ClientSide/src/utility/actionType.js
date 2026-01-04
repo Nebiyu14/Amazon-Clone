@@ -1,0 +1,9 @@
+const Type = {
+  ADD_TO_CART: "ADD_TO_CART",
+  DECREASE_QUANTITY: "DECREASE_QUANTITY",
+  REMOVE_FROM_CART: "REMOVE_FROM_CART",
+};
+
+export { Type };
+
+

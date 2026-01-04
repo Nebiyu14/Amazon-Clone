@@ -1,11 +1,12 @@
 import "./app.css";
-import Loader from "./components/spinner/Loader";
 import Routing from "./routing/Routing";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   return (
     <>
       <Routing />
+      <ToastContainer theme="dark" autoClose={2000} />
     </>
   );
 }

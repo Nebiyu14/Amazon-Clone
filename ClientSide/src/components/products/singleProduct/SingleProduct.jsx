@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./singleProduct.css";
 import { Rating } from "@mui/material";
 import NumeralFormat from "../../numeralCurrency/NumeralFormat";
 import { Link } from "react-router-dom";
+import { Type } from "../../../utility/actionType";
+import useCart from "../../../hooks/useCart";
+import { toast } from "react-toastify";
 
 function SingleProduct({ individualItem }) {
+  const { dispatch } = useCart();
+  const { id, title, price, image, description, rating } = individualItem;
+  const [clicked, setClicked] = useState(false);
+
+  const addToCart = () => {
+    setClicked(true);
+    setTimeout(() => {
+      setClicked(false);
+    }, 100);
+    dispatch({
+      type: Type.ADD_TO_CART,
+      item: { id, title, price, image, description, rating },
+    });
+    toast.info(`Item added to the cart!`, { position: "bottom-right" });
+  };
+
   return (
     <div className="link__format__controller">
-      <Link to={`/product/${individualItem.id}`}>
-        <div className="product__card__container">
+      <div className="product__card__container">
+        <Link to={`/product/${individualItem.id}`}>
           <div className="product__image">
             <img src={individualItem.image} alt="" />
           </div>
@@ -31,11 +50,13 @@ function SingleProduct({ individualItem }) {
           <div className="product__price">
             <NumeralFormat amount={individualItem.price} />
           </div>
-          <div className="product__add_to_cart_btn">
-            <button>Add to cart</button>
-          </div>
+        </Link>
+        <div className="product__add_to_cart_btn">
+          <button onClick={addToCart} className={clicked ? "flash" : ""}>
+            Add to cart
+          </button>
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

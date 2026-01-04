@@ -6,6 +6,8 @@ import SingleProduct from "../../components/products/singleProduct/SingleProduct
 export const base__URL = "https://fakestoreapi.com";
 import useLoading from "../../hooks/useLoading";
 import Loader from "../../components/spinner/Loader";
+
+
 function Result() {
   const [categorizedItem, setCategorizedItem] = useState([]);
   const { categoryName } = useParams();

@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./productDetailPage.css";
 import { Link } from "react-router-dom";
 import { Rating } from "@mui/material";
 import NumeralFormat from "../../../components/numeralCurrency/NumeralFormat";
+import { Type } from "../../../utility/actionType";
+import useCart from "../../../hooks/useCart";
+import { toast } from "react-toastify";
 
 function ProductDetailPage({ individualItem }) {
+  const { dispatch } = useCart();
+  const { id, title, price, image, rating, description } = individualItem;
+
+  const addToCart = () => {
+    dispatch({
+      type: Type.ADD_TO_CART,
+      item: { id, title, price, image, rating, description, quantity: 1 },
+    });
+    toast.info(`Item added to the cart!`, { position: "bottom-right" });
+  };
   return (
     <>
-      <div className="product__page__path">
-      </div>
+      <div className="product__page__path"></div>
       <div className="product__page__card__container">
         <div className="product__page__image">
           <img src={individualItem.image} alt="" />
@@ -38,7 +50,7 @@ function ProductDetailPage({ individualItem }) {
             <NumeralFormat amount={individualItem.price} />
           </div>
           <div className="product__page__add_to_cart_btn">
-            <button>Add to cart</button>
+            <button onClick={addToCart}>Add to cart</button>
           </div>
         </div>
       </div>

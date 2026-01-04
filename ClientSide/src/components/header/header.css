@@ -1,6 +1,11 @@
 /* ===============================
    Header Container
    =============================== */
+.header_sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
 .header__container {
   display: flex;
@@ -214,8 +219,9 @@
 
 .header__cart strong {
   position: absolute;
-  right: 35px;
+  right: 30px;
   top: -2px;
+  color: #fb8114;
 }
 
 .header__hamburger {

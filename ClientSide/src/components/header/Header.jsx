@@ -1,5 +1,5 @@
 import "./header.css";
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/Images/logo_amazon.png";
 import { CiLocationOn } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
@@ -8,10 +8,13 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Subheader from "./Subheader";
 import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
 
 export default function Header() {
+  const { cartItemCount } = useCart();
+
   return (
-    <>
+    <div className="header_sticky">
       <div className="header__container">
         <div className="header__leftside">
           <GiHamburgerMenu className="header__hamburger" />
@@ -66,12 +69,12 @@ export default function Header() {
             <div className="header__cart">
               <FiShoppingCart size={24} className="cartIcon" />
               <p>Cart</p>
-              <strong>0</strong>
+              <strong className="header__cart__count">{cartItemCount}</strong>
             </div>
           </Link>
         </div>
       </div>
       <Subheader />
-    </>
+    </div>
   );
 }
