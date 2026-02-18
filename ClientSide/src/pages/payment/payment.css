@@ -1,0 +1,64 @@
+.payment__page__container {
+  color: black;
+  display: flex;
+  margin: 20px;
+  gap: 20px;
+}
+
+.payment__page__leftSide {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: white;
+  padding: 20px 30px;
+}
+
+.payment__page__title {
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid grey;
+}
+
+.payment__page__address {
+  display: flex;
+  gap: 20px;
+}
+
+.payment__page__cart__items {
+  display: flex;
+  gap: 20px;
+}
+
+.payment__page__cart__items img {
+  width: 50px;
+  height: auto;
+}
+
+.payment__page__container h3 {
+  white-space: nowrap;
+  color: goldenrod;
+}
+
+.payment__page__rightSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  padding: 20px 30px;
+}
+
+/* ============================
+MEDIA QUERY
+============================ */
+
+@media (max-width: 768px) {
+  .payment__page__container,
+  .payment__page__address,
+  .payment__page__cart__items {
+    flex-wrap: wrap;
+  }
+
+  .payment__page__rightSide {
+    flex: 1;
+  }
+}

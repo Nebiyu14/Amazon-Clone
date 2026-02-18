@@ -12,7 +12,7 @@ export default function Banner() {
       <Swiper
       className="swiper__container"
         modules={[Navigation, Autoplay]}
-        autoplay={{ delay: 300000, disableOnInteraction: false }}
+        autoplay={{ delay: 10000, disableOnInteraction: false }}
         navigation={true}
         loop={false}
         

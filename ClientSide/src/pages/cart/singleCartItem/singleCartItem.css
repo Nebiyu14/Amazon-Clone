@@ -12,7 +12,7 @@
 
 .cart__page__image img {
   max-width: 200px;
-  height: auto;
+  max-height: 200px;
 }
 
 .cart__page__item_details {
@@ -28,7 +28,7 @@
 }
 
 .cart__page__item__title {
-  font-size: clamp(16px, 3vw, 20px);
+  font-size: clamp(12px, 2vw, 20px);
   font-weight: 700;
 }
 
@@ -50,6 +50,11 @@
   -webkit-line-clamp: 4;
   line-clamp: 2;
   overflow: hidden;
+}
+
+
+.hideContent{
+  display: none;
 }
 
 .cart__page__item__delete__btn {

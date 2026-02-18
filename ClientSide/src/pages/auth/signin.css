@@ -1,0 +1,119 @@
+.account__page__container {
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  margin-top: 20px;
+}
+
+.account__page__logo {
+  margin-bottom: 20px;
+}
+
+.account__page__logo img {
+  width: 100px;
+}
+
+.account__page__card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 400px;
+  flex-shrink: 1;
+  height: auto;
+  text-align: start;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 2px black;
+}
+
+.account__page__title {
+  font-size: clamp(16px, 3vw, 16px);
+}
+
+.account__page__form_sect form {
+  display: flex;
+  flex-direction: column;
+}
+
+.account__page__inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.account__page__inputs input {
+  padding: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  border: 1px solid black;
+  padding-left: 15px;
+  margin-bottom: 10px;
+  font-size: clamp(12px, 4vw, 16px);
+}
+
+.account__page__inputs label {
+  font-weight: bolder;
+}
+
+.account__page__error {
+  color: red;
+  min-height: 20px;
+
+}
+
+.account__page__terms_condition {
+  margin: 10px 0;
+}
+
+.account__page__terms_condition span {
+  color: blue;
+  user-select: none;
+  cursor: pointer;
+}
+
+.account__page__terms_condition span:hover {
+  text-decoration: underline;
+}
+
+.account__page__btn {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.account__page__btn button {
+  width: 100%;
+  background-color: goldenrod;
+  border: none;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: clamp(12px, 4vw, 16px);
+  cursor: pointer;
+}
+
+.account__page__btn button:active {
+  transform: scaleX(1.008);
+}
+
+.account__page__user__states {
+  display: flex;
+  justify-content: space-between;
+}
+
+.account__page__need__help {
+  margin-left: auto;
+}
+
+.account__page__user__states span {
+  color: blue;
+  user-select: none;
+  cursor: pointer;
+}
+
+.account__page__user__states span:hover {
+  text-decoration: underline;
+}

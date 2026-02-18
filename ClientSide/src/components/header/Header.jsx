@@ -9,9 +9,15 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import Subheader from "./Subheader";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
+import useAuth from "../../hooks/useAuth";
 
 export default function Header() {
   const { cartItemCount } = useCart();
+  const { user, signout, isLoading } = useAuth();
+  const currentUserNameEmail = user?.email;
+
+  //to prevent flash of 'sign in'  for logged in user
+  if (isLoading) return;
 
   return (
     <div className="header_sticky">
@@ -48,13 +54,19 @@ export default function Header() {
             <span>EN</span>
             <MdOutlineArrowDropDown />
           </div>
-          <Link to="/signin">
+          <Link to={!user && "/signin"}>
             <div className="header__account">
               <p>
-                Hello, sign in <br />
+                Hello, <span>{user ? currentUserNameEmail : "sign in"}</span>
+                <br />
                 <strong>Account & Lists</strong>
               </p>
               <MdOutlineArrowDropDown />
+              {user && (
+                <strong className="header__logout" onClick={signout}>
+                  Sign Out
+                </strong>
+              )}
             </div>
           </Link>
           <Link to={"/orders"}>

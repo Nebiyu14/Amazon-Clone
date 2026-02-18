@@ -2,13 +2,17 @@ import "./cart.css";
 import Layout from "../../components/layout/Layout";
 import useCart from "../../hooks/useCart";
 import SingleCartItem from "./singleCartItem/SingleCartItem";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NumeralFormat from "../../components/numeralCurrency/NumeralFormat";
 import { calculatedTotalPriceCart } from "../../utility/totalCartPrice";
 function Cart() {
+  const navigate = useNavigate();
   const { state, dispatch, cartItemCount } = useCart();
   const totalPrice = calculatedTotalPriceCart(state.cart);
   console.log(state);
+  const handleProceedToPayment = () => {
+    navigate('/payment')
+  };
 
   return (
     <Layout>
@@ -33,6 +37,7 @@ function Cart() {
                   <SingleCartItem
                     individualItem={individualItem}
                     key={individualItem.id}
+                    hideContent = {false}
                   />
                 );
               })}
@@ -48,7 +53,9 @@ function Cart() {
             <hr />
           </div>
           <div className="cart__page__proceed_to_checkout">
-            <button>Proceed to checkout</button>
+            <button onClick={handleProceedToPayment}>
+              Proceed to checkout
+            </button>
           </div>
         </div>
       </div>

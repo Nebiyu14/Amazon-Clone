@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./singleCartItem.css";
 import NumeralFormat from "../../../components/numeralCurrency/NumeralFormat";
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -6,9 +6,10 @@ import { Link } from "react-router-dom";
 import useCart from "../../../hooks/useCart";
 import { Type } from "../../../utility/actionType";
 
-function SingleCartItem({ individualItem }) {
+function SingleCartItem({ individualItem, hideContent }) {
   const { state, dispatch, cartItemCount } = useCart();
   const { id, title, price, image, description, rating } = individualItem;
+  // const [hideContent, setHideContent] = useState(null);
   const increaseQuantity = () => {
     dispatch({
       type: Type.ADD_TO_CART,
@@ -32,7 +33,7 @@ function SingleCartItem({ individualItem }) {
   return (
     <>
       <div className="cart__page__item__container">
-        <Link to={`/product/${individualItem.id}`}>
+        <Link to={`/product/${individualItem.id}`} target="_blank">
           <div className="cart__page__image">
             <img src={individualItem.image} alt="Item Image" />
           </div>
@@ -41,7 +42,7 @@ function SingleCartItem({ individualItem }) {
         <div className="cart__page__item_details">
           <div className="cart__page__item__title__dtlBtn">
             <div className="cart__page__item__title">
-              <Link to={`/product/${individualItem.id}`}>
+              <Link to={`/product/${individualItem.id}`} target="_blank">
                 {individualItem.title}
               </Link>
             </div>
@@ -54,14 +55,16 @@ function SingleCartItem({ individualItem }) {
               </button>
             </div>
           </div>
-          <div className="cart__page__item__description">
+          <div
+            className={
+              hideContent ? "hideContent" : "cart__page__item__description"
+            }
+          >
             {individualItem.description}
           </div>
           <div className="cart__page__item__price__quantity">
             <div className="cart__page__item__price">
-              <NumeralFormat
-                amount={individualItem.price * individualItem.quantity}
-              />
+              <NumeralFormat amount={individualItem.price} />
             </div>
             <div className="cart__page__item__btn__quantity">
               <button

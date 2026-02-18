@@ -166,11 +166,35 @@
   align-items: center;
   padding: 10px 0;
   border: 1px solid transparent;
+  position: relative;
 }
 
 .header__account:hover {
   border: 1px solid white;
   cursor: pointer;
+}
+
+.header__logout {
+  color: rgba(149, 201, 243);
+  background-color: #151820;
+  background-color: rgb(149, 200, 243, 0.328);
+  padding: 5px;
+  font-size: 14px;
+  position: absolute;
+  top: 3.5em;
+  left: 5.4em;
+  text-align: end;
+  /* border-radius: 0 0 4px 4px; */
+  cursor: pointer;
+  display: none;
+}
+
+.header__account:hover .header__logout {
+  display: block;
+}
+
+.header__logout:hover{
+    color: rgb(4, 123, 220);
 }
 
 .header__return__orders {

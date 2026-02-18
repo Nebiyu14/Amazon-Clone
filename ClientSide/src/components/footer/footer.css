@@ -1,0 +1,82 @@
+.footer__page__container {
+  background-color: #151820;
+  background-color: #232f3e;
+  padding: 20px 16px;
+  font-size: 14px;
+}
+
+.footer {
+  background-color: #232f3e;
+}
+
+.footer {
+  background-color: #232f3e;
+  background-color: #131a22;
+}
+
+/* Footer top section */
+
+.footer__page__shortcuts__links {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 10px auto;
+}
+
+.footer__page__box ul {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer__page__box li {
+  list-style: none;
+  color: white;
+  font-size: 12px;
+}
+
+.footer__page__box a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.869);
+}
+
+.footer__page__box a:hover {
+  text-decoration: underline;
+}
+
+/* Footer bottom section */
+
+.footer__page__botton__part {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  background-color: #151820;
+  padding: 20px 16px;
+  font-size: 12px;
+}
+
+.footer__page__terms__conditions {
+  display: flex;
+  gap: 20px;
+}
+
+.footer__page__terms__conditions p:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footer__page__author {
+  font-style: italic;
+}
+
+.footer__page__author a {
+  color: white;
+  text-decoration: none;
+}
+.footer__page__author a:hover {
+  color: violet;
+  text-decoration: underline;
+}
