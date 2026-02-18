@@ -1,0 +1,19 @@
+.back__to__top {
+  background-color: hsla(213, 28%, 19%, 0.925);
+  padding: 10px 0;
+  margin: 0 auto;
+  /* display: flex; */
+  /* justify-content: center; */
+  text-align: center;
+}
+
+.back__to__top button {
+  border: none;
+  background: transparent;
+  color: white;
+}
+
+.back__to__top:hover {
+  background-color: hsla(213, 28%, 19%, 0.88);
+  cursor: pointer;
+}
