@@ -4,10 +4,18 @@ import amazon_logo from "../../assets/Images/logo_amazon_black.png";
 import useAuth from "../../hooks/useAuth";
 import { ClipLoader } from "react-spinners";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Signin() {
   const [authMode, setAuthMode] = useState("signin");
-  const { login, createAccount, error, setError, isLoading } = useAuth();
+  const {
+    login,
+    createAccount,
+    handleResetPassword,
+    error,
+    setError,
+    isLoading,
+  } = useAuth();
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -33,6 +41,13 @@ function Signin() {
     }
   };
 
+  //reset password
+  const handleForgotPassword = () => {
+    const emailRequired = prompt("Please enter your email to reset password");
+    if (!emailRequired) return toast.info("Email is required!");
+    handleResetPassword(emailRequired);
+  };
+
   const handleInput = (e) => {
     setError(null);
     setUserCredentials((prev) => ({
@@ -55,6 +70,7 @@ function Signin() {
           </div>
           <div className="account__page__form_sect">
             <form action="" onSubmit={handleSubmit}>
+              <div className="account__page__error">{error}</div>
               <div className="account__page__inputs">
                 <label htmlFor="email">Email</label>
                 <input
@@ -75,7 +91,9 @@ function Signin() {
                   onChange={(e) => handleInput(e)}
                 />
               </div>
-              <div className="account__page__error">{error}</div>
+              <div className="account__page__password__reset">
+                <p onClick={handleForgotPassword}>Forgot password?</p>
+              </div>
               <div className="account__page__terms_condition">
                 <p>
                   By continuing, you agree to Amazon's clone

@@ -65,6 +65,16 @@
 
 }
 
+.account__page__password__reset{
+  margin-left: auto;
+}
+
+.account__page__password__reset p:hover{
+text-decoration: underline;
+color: blue;
+cursor: pointer;
+}
+
 .account__page__terms_condition {
   margin: 10px 0;
 }

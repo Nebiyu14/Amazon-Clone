@@ -2,6 +2,7 @@ import app from "../firebase/firebase";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
@@ -25,6 +26,8 @@ const logout = () => {
 };
 
 //PASSWORD RESET
+const resetPassword = (email) => {
+  return sendPasswordResetEmail(auth, email);
+};
 
-
-export { auth, signup, signin, logout };
+export { auth, signup, signin, logout, resetPassword };

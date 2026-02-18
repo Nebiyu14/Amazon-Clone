@@ -1,10 +1,17 @@
 //Authentication logic only here
 
 import { useEffect, useState, createContext } from "react";
-import { auth, logout, signin, signup } from "../utility/authFunctions";
+import {
+  auth,
+  logout,
+  signin,
+  signup,
+  resetPassword,
+} from "../utility/authFunctions";
 import { onAuthStateChanged } from "firebase/auth";
 import useLoading from "../hooks/useLoading";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 
@@ -81,6 +88,17 @@ function AuthProvider({ children }) {
       stopLoading();
     }
   };
+
+  //password reset
+  const handleResetPassword = async (email) => {
+    try {
+      await resetPassword(email);
+      toast.info("Password reset link sent. Check your email INBOX or SPAM.");
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   const values = {
     user,
     setUser,
@@ -92,6 +110,7 @@ function AuthProvider({ children }) {
     login,
     createAccount,
     signout,
+    handleResetPassword,
   };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
