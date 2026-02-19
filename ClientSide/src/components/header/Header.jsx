@@ -16,9 +16,6 @@ export default function Header() {
   const { user, signout, isLoading } = useAuth();
   const currentUserNameEmail = user?.email;
 
-  //to prevent flash of 'sign in'  for logged in user
-  if (isLoading) return;
-
   return (
     <div className="header_sticky">
       <div className="header__container">

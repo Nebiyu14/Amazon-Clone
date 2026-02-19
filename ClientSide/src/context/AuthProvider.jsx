@@ -20,12 +20,13 @@ function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const { isLoading, startLoading, stopLoading } = useLoading();
+  //to prevent flash of 'sign in' for already logged in user when refreshing the page:
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    startLoading();
     const unsubscribe = onAuthStateChanged(auth, (getCurrentUser) => {
       setUser(getCurrentUser);
-      stopLoading();
+      setAuthLoading(false);
       console.log(getCurrentUser);
     });
 
@@ -113,7 +114,11 @@ function AuthProvider({ children }) {
     handleResetPassword,
   };
 
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={values}>
+      {!authLoading && children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthProvider;
