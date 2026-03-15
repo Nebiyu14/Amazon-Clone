@@ -9,7 +9,7 @@ import { Type } from "../../../utility/actionType";
 function SingleCartItem({ individualItem, hideContent }) {
   const { state, dispatch, cartItemCount } = useCart();
   const { id, title, price, image, description, rating } = individualItem;
-  // const [hideContent, setHideContent] = useState(null);
+
   const increaseQuantity = () => {
     dispatch({
       type: Type.ADD_TO_CART,
@@ -46,7 +46,11 @@ function SingleCartItem({ individualItem, hideContent }) {
                 {individualItem.title}
               </Link>
             </div>
-            <div className="cart__page__item__delete__btn">
+            <div
+              className={
+                hideContent ? "hideContent" : "cart__page__item__delete__btn"
+              }
+            >
               <button>
                 <MdOutlineDeleteForever
                   title="Remove Item"
@@ -66,11 +70,15 @@ function SingleCartItem({ individualItem, hideContent }) {
             <div className="cart__page__item__price">
               <NumeralFormat amount={individualItem.price} />
             </div>
-            <div className="cart__page__item__btn__quantity">
+            <div
+              className={
+                hideContent ? "hideContent" : "cart__page__item__btn__quantity"
+              }
+            >
               <button
-                className="cart__page__item__decrease__btn"
+                className="cart__page__item__decrease__btn cart__page__quantity__btn__decrease"
                 onClick={decreaseQuantity}
-                title="Less"
+                title="Decrease Quantity"
               >
                 -
               </button>
@@ -78,9 +86,9 @@ function SingleCartItem({ individualItem, hideContent }) {
                 {individualItem.quantity}
               </p>
               <button
-                className="cart__page__add__btn"
+                className="cart__page__add__btn cart__page__quantity__btn__add"
                 onClick={increaseQuantity}
-                title="More"
+                title="Increase Quantity"
               >
                 +
               </button>

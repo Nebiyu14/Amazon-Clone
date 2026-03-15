@@ -1,14 +1,12 @@
 import { Type } from "./actionType";
 
-const initialCartState = { cart: [] };
-
 function reducer(state, action) {
   //add to cart
   switch (action.type) {
     case Type.ADD_TO_CART:
       //1. check if exist
       const existingItem = state.cart.find(
-        (cartItem) => cartItem.id === action.item.id
+        (cartItem) => cartItem.id === action.item.id,
       );
       //2. if exist => increase quantity
       if (existingItem) {
@@ -17,7 +15,7 @@ function reducer(state, action) {
           cart: state.cart.map((cartItem) =>
             cartItem.id === action.item.id
               ? { ...cartItem, quantity: cartItem.quantity + 1 }
-              : cartItem
+              : cartItem,
           ),
         };
       }
@@ -41,7 +39,7 @@ function reducer(state, action) {
       });
 
       const filteredcart = updatedCart.filter(
-        (cartItem) => cartItem.quantity > 0
+        (cartItem) => cartItem.quantity > 0,
       );
 
       return {
@@ -68,11 +66,16 @@ function reducer(state, action) {
     //   };
     // }
 
-    
     case Type.REMOVE_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter((cartItem) => cartItem.id !== action.item.id),
+      };
+
+    case Type.SET_CART:
+      return {
+        ...state,
+        cart: action.payload,
       };
 
     default:
@@ -80,4 +83,4 @@ function reducer(state, action) {
   }
 }
 
-export { initialCartState, reducer };
+export { reducer };
