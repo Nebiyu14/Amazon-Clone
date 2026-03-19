@@ -47,7 +47,7 @@ function reducer(state, action) {
         cart: filteredcart,
       };
 
-    // Method II
+    //// Method II
     // //1. check if exist
     // const isItemExist = state.cart.find(
     //   (cartItem) => cartItem.id === action.item.id
@@ -66,16 +66,19 @@ function reducer(state, action) {
     //   };
     // }
 
+
+    //remove from cart
     case Type.REMOVE_FROM_CART:
       return {
         ...state,
         cart: state.cart.filter((cartItem) => cartItem.id !== action.item.id),
       };
 
-    case Type.SET_CART:
+    //clear cart
+    case Type.CLEAR_CART:
       return {
         ...state,
-        cart: action.payload,
+        cart: [],
       };
 
     default:

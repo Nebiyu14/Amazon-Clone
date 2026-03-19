@@ -5,11 +5,13 @@ import { useStripe } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../../components/layout/Layout";
+import useCart from "../../hooks/useCart";
 
 function Success() {
   const stripe = useStripe();
   const [queryParams] = useSearchParams();
   const [status, setStatus] = useState("loading");
+  const { dispatch } = useCart();
 
   useEffect(() => {
     if (!stripe) return;
@@ -25,6 +27,7 @@ function Success() {
       switch (paymentIntent.status) {
         case "succeeded":
           setStatus("success");
+          dispatch({ type: "CLEAR_CART" });
           //   clearCart();
           break;
 

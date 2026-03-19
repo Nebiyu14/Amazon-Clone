@@ -9,9 +9,8 @@ function Cart() {
   const navigate = useNavigate();
   const { state, dispatch, cartItemCount } = useCart();
   const totalPrice = calculatedTotalPriceCart(state.cart);
-  console.log(state);
   const handleProceedToPayment = () => {
-    navigate('/payment')
+    navigate("/payment");
   };
 
   return (
@@ -27,7 +26,10 @@ function Cart() {
               <p className="cart__empty">Your Cart Is Empty</p>
 
               <p className="go_for_shopping_link">
-                <Link to={"/"}>Go For Shopping</Link>
+                <Link to={"/"}>
+                  <span className="btn-icon">🛍️</span>
+                  <span className="btn-text">Go For Shopping</span>
+                </Link>
               </p>
             </div>
           ) : (
@@ -37,7 +39,7 @@ function Cart() {
                   <SingleCartItem
                     individualItem={individualItem}
                     key={individualItem.id}
-                    hideContent = {false}
+                    hideContent={false}
                   />
                 );
               })}

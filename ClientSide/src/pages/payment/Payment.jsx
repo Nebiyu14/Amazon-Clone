@@ -26,17 +26,22 @@ function Payment() {
   const shipping = subtotal > 35 ? 0 : 5.99;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
+  // console.log(total)
 
   const backend_url = import.meta.env.VITE_BACKEND_FIREBASE_BASE_URL;
   useEffect(() => {
     const fetchClientSecret = async () => {
-      const response = await fetch(`${backend_url}/payment`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ total: 3000 }),
-      });
-      const data = await response.json();
-      setclientSecret(data.client_secret);
+      try {
+        const response = await fetch(`${backend_url}/payment`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ total: total }),
+        });
+        const data = await response.json();
+        setclientSecret(data.client_secret);
+      } catch (error) {
+        console.error("Error fetching client secret:", error);
+      }
     };
     fetchClientSecret();
   }, []);
