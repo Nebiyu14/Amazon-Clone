@@ -20,7 +20,7 @@ function CheckoutForm() {
     const response = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:5005/success",
+        return_url: `${window.location.origin}/success`,
       },
     });
     console.log("response of comfirmed payment: ", response);
