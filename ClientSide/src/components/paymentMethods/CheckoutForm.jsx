@@ -10,6 +10,10 @@ function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
+  const returnUrl = import.meta.env.VITE_FRONTEND_BASE_URL
+    ? `${import.meta.env.VITE_FRONTEND_BASE_URL}/success`
+    : `${window.location.origin}/success`;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) {
@@ -20,7 +24,7 @@ function CheckoutForm() {
     const response = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${import.meta.env.VITE_FRONTEND_BASE_URL}/success`,
+        return_url: returnUrl,
       },
     });
     console.log("response of comfirmed payment: ", response);

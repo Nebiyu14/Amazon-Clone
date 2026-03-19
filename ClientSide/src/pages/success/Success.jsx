@@ -12,6 +12,7 @@ function Success() {
   const [queryParams] = useSearchParams();
   const [status, setStatus] = useState("loading");
   const { dispatch } = useCart();
+  
 
   useEffect(() => {
     if (!stripe) return;
