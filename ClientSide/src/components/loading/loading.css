@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap");
+
+/* ── Overlay ──────────────────────────────────────────────── */
+.spinner-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 14, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+
+/* ── Container ────────────────────────────────────────────── */
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ── Ring ─────────────────────────────────────────────────── */
+.spinner-ring {
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+
+/* Static track */
+.spinner-ring::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Spinning arc */
+.spinner-ring__arc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: #e2f542;
+  border-right-color: rgba(226, 245, 66, 0.35);
+  animation: spin 0.9s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Soft glow behind the ring */
+.spinner-ring::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(226, 245, 66, 0.12) 0%,
+    transparent 70%
+  );
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.12); }
+}
+
+/* ── Dots ─────────────────────────────────────────────────── */
+.spinner-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.spinner-dots span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e2f542;
+  animation: dot-bounce 1.2s ease-in-out infinite;
+}
+
+.spinner-dots span:nth-child(1) { animation-delay: 0s; }
+.spinner-dots span:nth-child(2) { animation-delay: 0.18s; }
+.spinner-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+@keyframes dot-bounce {
+  0%, 80%, 100% { transform: translateY(0);    opacity: 0.35; }
+  40%           { transform: translateY(-6px); opacity: 1; }
+}
+
+/* ── Message ──────────────────────────────────────────────── */
+.spinner-message {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+  animation: fade-text 2s ease-in-out infinite;
+}
+
+@keyframes fade-text {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 0.9; }
+}

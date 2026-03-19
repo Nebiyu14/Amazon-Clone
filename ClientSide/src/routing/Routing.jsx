@@ -6,6 +6,11 @@ import Orders from "../pages/orders/Orders";
 import Cart from "../pages/cart/Cart";
 import Result from "../pages/result/Result";
 import ProductDetail from "../pages/productDetail/ProductDetail";
+import Success from "../pages/success/Success";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function Routing() {
   return (
@@ -17,6 +22,14 @@ function Routing() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/product/:productId" element={<ProductDetail />} />
         <Route path="/signin" element={<Signin />} />
+        <Route
+          path="/success"
+          element={
+            <Elements stripe={stripePromise}>
+              <Success />
+            </Elements>
+          }
+        />
         <Route path="/category/:categoryName" element={<Result />} />
       </Routes>
     </div>

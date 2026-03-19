@@ -1,12 +1,23 @@
 import "./payment.css";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import useCart from "../../hooks/useCart";
 import SingleCartItem from "../cart/singleCartItem/SingleCartItem";
 import useAuth from "../../hooks/useAuth";
+import CheckoutForm from "../../components/paymentMethods/CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import Loading from "../../components/loading/Loading";
+import { toast } from "react-toastify";
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 function Payment() {
   const { user } = useAuth();
-  const { state, dispatch, cartItemCount } = useCart();
+  const { state, cartItemCount } = useCart();
+  const [clientSecret, setclientSecret] = useState("");
+  const navigate = useNavigate();
 
   const subtotal = state.cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -15,6 +26,36 @@ function Payment() {
   const shipping = subtotal > 35 ? 0 : 5.99;
   const tax = subtotal * 0.08;
   const total = subtotal + shipping + tax;
+
+  const backend_url = import.meta.env.VITE_BACKEND_FIREBASE_BASE_URL;
+  useEffect(() => {
+    const fetchClientSecret = async () => {
+      const response = await fetch(`${backend_url}/payment`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ total: 3000 }),
+      });
+      const data = await response.json();
+      setclientSecret(data.client_secret);
+    };
+    fetchClientSecret();
+  }, []);
+
+  if (state.cart.length === 0) {
+    toast.info("Your cart is empty...", {
+      toastId: "empty-cart",
+    });
+    navigate("/");
+    return null;
+  }
+
+  if (!clientSecret) {
+    return (
+      <Layout>
+        <Loading message="Loading payment methods..." />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -25,7 +66,7 @@ function Payment() {
             <h1>Review & Pay</h1>
             <p>🔒 Secure Checkout</p>
           </div>
-
+          {/* address */}
           <div className="payment__page__address">
             <div>
               <h3>Shipping Address</h3>
@@ -42,7 +83,7 @@ function Payment() {
               </p>
             </div>
           </div>
-
+          {/* items lists */}
           <div className="payment__page__cart__items">
             <div>
               <h3>Review Items ({cartItemCount})</h3>
@@ -57,17 +98,20 @@ function Payment() {
               ))}
             </div>
           </div>
-
+          {/* payment methods */}
           <div className="payment__page__payment__methods">
             <h3>Payment Method</h3>
-            <p>Stripe payment integration coming soon.</p>
-            {/* <button className="payment__page__place__order__btn">
-              Place Order
-            </button> */}
+            <div>
+              {clientSecret && (
+                <Elements stripe={stripePromise} options={{ clientSecret }}>
+                  <CheckoutForm />
+                </Elements>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* RIGHT SIDE */}
+        {/* order summary */}
         <div className="payment__page__rightSide">
           <h3>Order Summary</h3>
 
@@ -93,9 +137,9 @@ function Payment() {
             <span>${total.toFixed(2)}</span>
           </div>
 
-          <button className="payment__page__place__order__btn">
+          {/* <button className="payment__page__place__order__btn">
             Place Order
-          </button>
+          </button> */}
         </div>
       </div>
     </Layout>

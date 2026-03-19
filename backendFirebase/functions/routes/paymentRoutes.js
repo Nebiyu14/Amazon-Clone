@@ -4,21 +4,24 @@ const express = require("express");
 const router = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-//get endpoint => testing
+//get endpoint => home page: testing
 router.get("/", (req, res) => {
-  res.status(200).send("Route is connected with express");
+  res.status(200).send("Firebase backend server is started and working fine!");
 });
 
 //post endpoint
 router.post("/payment", async (req, res) => {
-  const total = req.query.total;
+  const { total } = req.body;
+  console.log("received total from frontend: ", total);
   if (total > 0) {
     try {
       const paymentIntent = await stripe.paymentIntents.create({
         amount: total,
-        currency: "usd",
+        currency: "pln",
+        automatic_payment_methods: { enabled: true },
       });
-      res.status(200).send(paymentIntent.client_secret);
+      res.status(200).send(paymentIntent);
+      console.log(paymentIntent.client_secret);
     } catch (error) {
       console.log("Error while creating a payment intent", error);
     }

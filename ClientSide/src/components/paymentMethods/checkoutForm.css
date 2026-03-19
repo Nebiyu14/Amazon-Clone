@@ -1,0 +1,16 @@
+/* PLACE ORDER BUTTON */
+.payment__page__place__order__btn {
+  background: goldenrod;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.payment__page__place__order__btn:hover {
+  background: #c8960c;
+}
