@@ -1,83 +1,240 @@
-# Amazon React Clone
+## Amazon Clone (Full-Stack E-commerce Web App)
 
-A full‑stack Amazon‑style storefront built with React + Vite on the frontend and two interchangeable backend options for Stripe payments:
-1. Express + Node.js (REST API)
-2. Firebase Functions (serverless)
+A responsive full-stack Amazon-inspired e-commerce app with secure authentication, dynamic cart management, and integrated Stripe payments. Built using React, Express/Firebase, and modern deployment tools. The application provides a responsive and seamless shopping experience across all devices.
 
-This project is under active development, and features will continue to evolve.
+---
 
-**Live URLs**
-1. Frontend (Vercel): [View Website](https://amazon-clone-xi-one.vercel.app)
-2. Backend Option A (Render): [Express Backend Server](https://amazon-clone-6ugt.onrender.com)
+## Live URLs
 
-**Tech Stack**
-1. React 19 + Vite
-2. React Router
-3. Firebase Auth (client)
-4. Stripe Payments
-5. Express 5 (backend option A)
-6. Firebase Functions (backend option B)
-7. Material UI + Emotion
-8. Fake Store API (product data)
+- **Frontend (Vercel):** <a href="https://amazon-clone-xi-one.vercel.app" target="_blank" rel="noopener noreferrer">View Web App</a>
+- **Backend (Render):** <a href="https://amazon-clone-6ugt.onrender.com" target="_blank" rel="noopener noreferrer">Express Server</a>
 
-**Project Structure**
-1. `ClientSide/` – React frontend
-2. `backendExpress/` – Express API for Stripe payments
-3. `backendFirebase/` – Firebase Functions API for Stripe payments
+---
 
-**Prerequisites**
-1. Node.js 18+ for frontend and Express backend
-2. Node.js 18+ for Firebase Functions 
-3. npm (or pnpm/yarn)
-4. Stripe account + keys
-5. Firebase CLI (only if using Firebase Functions)
+## Test Payment
 
-**Frontend Setup**
-1. `cd ClientSide`
-2. `npm install`
-3. Create `ClientSide/.env`:
-```env
-VITE_STRIPE_PUBLIC_KEY=pk_test_your_key_here
-VITE_BACKEND_BASE_URL=http://localhost:3000
-VITE_FRONTEND_BASE_URL=http://localhost:5173
+You can try out the payment flow safely using Stripe’s **test mode**.
+
+> **Note:** This is for demonstration purposes only. No real charges will occur.
+
+### How to test:
+
+#### Test Card (for card payment only)
+
+Use the following card details:
+
 ```
-4. `npm run dev`
+4242 4242 4242 4242
+Any future date
+Any CVC
+```
 
-**Backend Option A: Express**
-1. `cd backendExpress`
-2. `npm install`
-3. Create `backendExpress/.env`:
+1. Choose your preferred payment method.
+2. Click the **Pay Now** button to complete the payment.
+3. For some payment methods (e.g., PayPal, Google Pay), you may be redirected to an external Stripe page.
+4. Follow the checkout instructions on the site.
+
+> All other payment methods in test mode can accept dummy details, you won’t be charged.
+
+
+
+## Tech Stack
+
+### Frontend
+
+- React 19 + Vite
+- React Router
+- Material UI
+- Firebase Authentication
+- Stripe Payment Element
+- CSS
+
+### Backend (Two Options)
+
+- **Option A:** Node.js + Express 5 (Render)
+- **Option B:** Firebase Functions (Serverless)
+
+### Services & APIs
+
+- Stripe (Payments)
+- Firebase Auth
+- <a href="https://fakestoreapi.com" target="_blank" rel="noopener noreferrer">Fake Store API</a> (Product Data)
+
+### Database
+
+- Firestore _(planned for future implementation)_
+
+---
+
+## Features
+
+### Authentication
+
+- User Sign Up / Sign In / Sign Out
+- Password Reset (Forgot Password)
+- Persistent login state using Context API
+
+### Shopping Experience
+
+- Product listing (Fake Store API)
+- Category browsing
+- Product detail view
+
+### Cart Management
+
+- Add to cart
+- Increase / decrease quantity
+- Remove items from cart
+
+### Payments (Stripe)
+
+- Integrated Stripe Payment Element
+- Supports multiple payment methods
+- Secure payment processing using PaymentIntents
+
+### Order Flow
+
+- Order summary (subtotal, tax, shipping)
+- Redirect to success page after payment
+- Payment status handling (success / failure)
+- Cart cleared only after successful payment
+
+### UX Enhancements
+
+- Loading states
+- Toast notifications for feedback
+
+
+---
+## Screenshots
+
+### Home Page
+![Home Page](./ClientSide/src/assets/screenshots/homepage.jpg)
+
+### Checkout
+![Checkout](./ClientSide/src/assets/screenshots/cartAndordersummary.jpg)
+
+### Checkout / Payment
+![Payment methods](./ClientSide/src/assets/screenshots/payment%20methods.jpg)
+---
+
+## Run Locally
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/Nebiyu14/Amazon-Clone.git
+cd Amazon-Clone
+```
+
+---
+
+### 2. Backend Setup
+
+#### Option A: Express Backend (Recommended)
+
+```bash
+cd backendExpress
+npm install
+```
+
+Create `.env`:
+
 ```env
 STRIPE_SECRET_KEY=sk_test_your_key_here
 PORT=3000
 ```
-4. `npm start`
 
-The API exposes:
-1. `GET /` – health check
-2. `POST /payment` – create Stripe PaymentIntent (expects `{ total }`)
+Run server:
 
-**Backend Option B: Firebase Functions**
-1. `cd backendFirebase/functions`
-2. `npm install`
-3. Create `backendFirebase/functions/.env`:
+```bash
+npm start
+```
+
+---
+
+#### Option B: Firebase Functions
+
+```bash
+cd backendFirebase/functions
+npm install
+```
+
+Create `.env`:
+
 ```env
 STRIPE_SECRET_KEY=sk_test_your_key_here
 ```
-4. Run emulator: `npm run serve`
-5. Or deploy: `npm run deploy`
 
-For the emulator, set `VITE_BACKEND_BASE_URL` to:
-`http://localhost:5001/<your-project-id>/us-central1/api`
+Run emulator:
 
-For deployed functions, use your functions URL:
-`https://us-central1-<your-project-id>.cloudfunctions.net/api`
+```bash
+npm run serve
+```
 
-**Notes**
-1. Product data is fetched from `https://fakestoreapi.com`.
-2. Firebase client config currently lives in `ClientSide/src/firebase/firebase.js`.
+---
 
-**Scripts**
-1. Frontend: `npm run dev`, `npm run build`, `npm run preview`
-2. Express API: `npm start`
-3. Firebase Functions: `npm run serve`, `npm run deploy`
+### 3. Frontend Setup
+
+```bash
+cd ClientSide
+npm install
+```
+
+Create `.env`:
+
+```env
+VITE_STRIPE_PUBLIC_KEY=pk_test_your_key_here
+VITE_FRONTEND_BASE_URL=http://localhost:5005
+VITE_BACKEND_BASE_URL=http://localhost:3000
+```
+
+> If using Firebase Functions:
+
+```env
+VITE_BACKEND_BASE_URL=your-project-id>/us-central1/api
+```
+
+Run frontend:
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:5005
+```
+
+---
+
+## Project Structure
+
+```
+/ClientSide        → React frontend
+/backendExpress    → Express backend
+/backendFirebase   → Firebase Functions backend
+```
+
+---
+
+## Upcoming Improvements
+
+- Integrate Firestore database
+- Store and display user orders
+- Order history page
+
+---
+
+## Show Your Support🙏
+
+If you like this project, consider giving it a ⭐️ on GitHub. Thank you!
+
+---
+
+## Author
+
+**Nebiyu T Nadew**
+
+---
