@@ -28,7 +28,7 @@ function Payment() {
   const total = subtotal + shipping + tax;
   // console.log(total)
 
-  const backend_url = import.meta.env.VITE_BACKEND_FIREBASE_BASE_URL;
+  const backend_url = import.meta.env.VITE_BACKEND_BASE_URL;
   useEffect(() => {
     const fetchClientSecret = async () => {
       try {
