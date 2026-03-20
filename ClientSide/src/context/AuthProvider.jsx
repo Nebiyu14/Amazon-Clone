@@ -49,7 +49,7 @@ function AuthProvider({ children }) {
       await signin(email, password);
       navigate(redirect || "/");
     } catch (error) {
-      setError(error.message.split(":")[1].trim());
+      setError(error?.message?.split(":")[1].trim());
     } finally {
       stopLoading();
     }
@@ -71,7 +71,7 @@ function AuthProvider({ children }) {
       await signup(email, password);
       navigate(redirect || "/");
     } catch (error) {
-      setError(error.message.split(":")[1].trim());
+      setError(error?.message?.split(":")[1].trim());
     } finally {
       stopLoading();
     }

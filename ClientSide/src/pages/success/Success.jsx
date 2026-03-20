@@ -6,44 +6,74 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Layout from "../../components/layout/Layout";
 import useCart from "../../hooks/useCart";
+import useAuth from "../../hooks/useAuth";
+import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 function Success() {
   const stripe = useStripe();
   const [queryParams] = useSearchParams();
   const [status, setStatus] = useState("loading");
-  const { dispatch } = useCart();
-  
+  const { state, dispatch } = useCart();
+  const { user } = useAuth();
 
   useEffect(() => {
     if (!stripe) return;
 
     const clientSecret = queryParams.get("payment_intent_client_secret");
+    const paymentIntentId = queryParams.get("payment_intent");
     if (!clientSecret) {
       setStatus("error");
       return;
     }
 
     //retrieve payment intent and user details from stripe
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setStatus("success");
-          dispatch({ type: "CLEAR_CART" });
-          //   clearCart();
-          break;
+    stripe
+      .retrievePaymentIntent(clientSecret)
+      .then(async ({ paymentIntent }) => {
+        console.log(paymentIntent);
+        switch (paymentIntent.status) {
+          case "succeeded":
+            //save order details to firestore
+            const orderData = doc(
+              db,
+              "users",
+              user.uid,
+              "orders",
+              paymentIntentId,
+            );
+            //to prevent duplicate orders
+            const existingOrder = await getDoc(orderData);
 
-        case "processing":
-          setStatus("processing");
-          break;
+            if (!existingOrder.exists()) {
+              await setDoc(orderData, {
+                paymentIntentId: paymentIntent.id,
+                amount: paymentIntent.amount,
+                items: state.cart,
+                createdAt: serverTimestamp(),
+                status: "paid",
+                userEmail: user.email,
+                userName:
+                  user.displayName || user.email?.split("@")[0] || "User",
+              });
+            }
 
-        case "requires_payment_method":
-          setStatus("failed");
-          break;
+            setStatus("success");
+            dispatch({ type: "CLEAR_CART" });
+            break;
 
-        default:
-          setStatus("error");
-      }
-    });
+          case "processing":
+            setStatus("processing");
+            break;
+
+          case "requires_payment_method":
+            setStatus("failed");
+            break;
+
+          default:
+            setStatus("error");
+        }
+      });
   }, [stripe, queryParams]);
   return (
     <Layout>

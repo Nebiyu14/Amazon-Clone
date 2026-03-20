@@ -10,6 +10,7 @@ import Success from "../pages/success/Success";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import ProtectedRoutes from "../components/protectedRoute/ProtectedRoutes";
+import PageNotFound from "../components/pageNoteFound/PageNotFound";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -52,6 +53,7 @@ function Routing() {
           }
         />
         <Route path="/category/:categoryName" element={<Result />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
