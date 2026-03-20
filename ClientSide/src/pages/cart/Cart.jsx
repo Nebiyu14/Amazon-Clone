@@ -55,7 +55,15 @@ function Cart() {
             <hr />
           </div>
           <div className="cart__page__proceed_to_checkout">
-            <button onClick={handleProceedToPayment}>
+            <button
+              onClick={handleProceedToPayment}
+              disabled={state.cart.length === 0}
+              title={
+                state.cart.length === 0
+                  ? "Add items to cart to proceed"
+                  : "Proceed to checkout"
+              }
+            >
               Proceed to checkout
             </button>
           </div>
