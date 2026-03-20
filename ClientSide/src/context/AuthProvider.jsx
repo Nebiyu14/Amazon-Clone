@@ -34,7 +34,7 @@ function AuthProvider({ children }) {
   }, []);
 
   //signin
-  const login = async (email, password) => {
+  const login = async (email, password, redirect) => {
     startLoading();
     setError(null);
 
@@ -47,7 +47,7 @@ function AuthProvider({ children }) {
 
     try {
       await signin(email, password);
-      navigate("/");
+      navigate(redirect || "/");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -56,7 +56,7 @@ function AuthProvider({ children }) {
   };
 
   //signup
-  const createAccount = async (email, password) => {
+  const createAccount = async (email, password, redirect) => {
     startLoading();
     setError(null);
 
@@ -69,7 +69,7 @@ function AuthProvider({ children }) {
 
     try {
       await signup(email, password);
-      navigate("/");
+      navigate(redirect || "/");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -83,6 +83,8 @@ function AuthProvider({ children }) {
     setError(null);
     try {
       await logout();
+      toast.info("You have been signed out.");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     } finally {

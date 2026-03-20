@@ -3,10 +3,13 @@ import "./signin.css";
 import amazon_logo from "../../assets/Images/logo_amazon_black.png";
 import useAuth from "../../hooks/useAuth";
 import { ClipLoader } from "react-spinners";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
+import Layout from "../../components/layout/Layout";
 
 function Signin() {
+  const protectedRouteMessage = useLocation();  //access the message and redirect info sent from ProtectedRoutes component through location state
+  const { message, redirect } = protectedRouteMessage?.state || {};
   const [authMode, setAuthMode] = useState("signin");
   const {
     login,
@@ -32,12 +35,12 @@ function Signin() {
 
     //signin
     if (authMode === "signin") {
-      login(email, password);
+      login(email, password, redirect);
     }
 
     //signup
     if (authMode === "signup") {
-      createAccount(email, password);
+      createAccount(email, password, redirect);
     }
   };
 
@@ -56,7 +59,7 @@ function Signin() {
     }));
   };
   return (
-    <>
+    <Layout>
       <div className="account__page__container">
         <div className="account__page__logo">
           <Link to={"/"}>
@@ -68,6 +71,7 @@ function Signin() {
           <div className="account__page__title">
             <h2>Sign In or Create Account</h2>
           </div>
+          {message && <p style={{ color: "red" }}>{message}</p>}
           <div className="account__page__form_sect">
             <form action="" onSubmit={handleSubmit}>
               <div className="account__page__error">{error}</div>
@@ -142,7 +146,7 @@ function Signin() {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
 

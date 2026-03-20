@@ -113,3 +113,19 @@
   0%, 100% { opacity: 0.45; }
   50%       { opacity: 0.9; }
 }
+
+/* ── Countdown ────────────────────────────────────────────── */
+.spinner-countdown {
+  font-family: "DM Mono", monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: #e2f542;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.92); }
+}

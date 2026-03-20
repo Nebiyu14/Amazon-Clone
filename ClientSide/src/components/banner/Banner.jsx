@@ -12,9 +12,10 @@ export default function Banner() {
       <Swiper
       className="swiper__container"
         modules={[Navigation, Autoplay]}
-        autoplay={{ delay: 10000, disableOnInteraction: false }}
+        autoplay={{ delay: 1000, disableOnInteraction: false }}
         navigation={true}
         loop={false}
+        speed={2800}
         
       >
         {banner__images.map((img, index) => {

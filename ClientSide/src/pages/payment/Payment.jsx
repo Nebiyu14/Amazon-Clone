@@ -57,7 +57,7 @@ function Payment() {
   if (!clientSecret) {
     return (
       <Layout>
-        <Loading message="Loading payment methods..." />
+        <Loading message="Loading payment methods..." countdown={30} />
       </Layout>
     );
   }
