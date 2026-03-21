@@ -19,20 +19,22 @@ You can try out the payment flow safely using Stripe’s **test mode**.
 
 ### How to test:
 
+1. Choose your preferred payment method.
+2. Fill the required details.
+3. Click the **Pay Now** button to complete the payment.
+4. For some payment methods (e.g., PayPal, Google Pay), you may be redirected to an external Stripe page.
+5. Follow the checkout instructions on the site.
+
 #### Test Card (for card payment only)
 
-Use the following card details:
+> Use the following Stripe provided card details:
 
 ```
 4242 4242 4242 4242
-Any future date
-Any CVC
 ```
 
-1. Choose your preferred payment method.
-2. Click the **Pay Now** button to complete the payment.
-3. For some payment methods (e.g., PayPal, Google Pay), you may be redirected to an external Stripe page.
-4. Follow the checkout instructions on the site.
+Any future date  
+Any CVC
 
 > All other payment methods in test mode can accept dummy details, you won’t be charged.
 
@@ -230,8 +232,6 @@ http://localhost:5005
 ```
 
 ---
-
-
 
 ---
 
