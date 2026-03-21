@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import Layout from "../../components/layout/Layout";
 
 function Signin() {
-  const protectedRouteMessage = useLocation();  //access the message and redirect info sent from ProtectedRoutes component through location state
+  const protectedRouteMessage = useLocation();  //access the message and redirect info sent from ProtectedRoutes component
   const { message, redirect } = protectedRouteMessage?.state || {};
   const [authMode, setAuthMode] = useState("signin");
   const {

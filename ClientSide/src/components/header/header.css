@@ -193,8 +193,8 @@
   display: block;
 }
 
-.header__logout:hover{
-    color: rgb(4, 123, 220);
+.header__logout:hover {
+  color: rgb(4, 123, 220);
 }
 
 .header__return__orders {
@@ -282,9 +282,9 @@ MEDIA QUERY : Mobile view
     padding: 5px;
   }
 
+  /* .header__return__orders, */
   .header__delivery,
-  .header__language,
-  .header__return__orders {
+  .header__language {
     display: none;
   }
 

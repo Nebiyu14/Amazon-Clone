@@ -12,6 +12,7 @@ function Orders() {
 
   useEffect(() => {
     if (!user?.uid) return;
+    //fetch orders for the current user and listen for real-time updates
     const ordersFirestoreRef = collection(db, "users", user.uid, "orders");
     const sortedOrders = query(
       ordersFirestoreRef,
@@ -37,6 +38,7 @@ function Orders() {
           {!loading && orders.length > 0 && (
             <span className="orders__page__count">
               {orders.length} {orders.length === 1 ? "order" : "orders"}
+              {console.log(orders)}
             </span>
           )}
         </div>
@@ -66,31 +68,37 @@ function Orders() {
 
             return (
               <div className="order__card" key={order.id}>
-                {/* Header */}
                 <div className="order__header">
                   <div className="order__header__left">
-                    {/* <p className="order__id">
-                      <span className="order__id__label">Order ID</span>
-                      {order.id}
-                    </p> */}
-                    <p className="order__date">
-                      {createdAt.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                      &nbsp;·&nbsp;
-                      {createdAt.toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
+                    {createdAt ? (
+                      <p className="order__date">
+                        {createdAt.toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                        {" · "}
+                        {createdAt.toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    ) : (
+                      <p className="order__date">Date not available</p>
+                    )}
                   </div>
-                  <span
-                    className={`order__status order__status--${order.status?.toLowerCase() || "delivered"}`}
-                  >
-                    {order.status || "Delivered"}
-                  </span>
+                  <div className="order__header__right">
+                    <span
+                      className="order__total"
+                      title={"Items price, shipping, and tax included"}
+                    >
+                      Total:{" "}
+                      <strong>${order.amount / (100)?.toFixed(2)}</strong>
+                    </span>
+                    <span className="order__status">
+                      {order.status || "Delivered"}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Items */}

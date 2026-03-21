@@ -9,6 +9,7 @@ import useCart from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import Loading from "../../components/loading/Loading";
 
 function Success() {
   const stripe = useStripe();
@@ -78,7 +79,9 @@ function Success() {
   return (
     <Layout>
       <div className="success__container">
-        {status === "loading" && <h2>Checking payment status...</h2>}
+        {status === "loading" && (
+          <Loading message="Checking payment status..." />
+        )}
 
         {status === "success" && (
           <div className="success__content">

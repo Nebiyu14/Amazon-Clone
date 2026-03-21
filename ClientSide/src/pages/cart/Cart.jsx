@@ -27,7 +27,7 @@ function Cart() {
 
               <p className="go_for_shopping_link">
                 <Link to={"/"}>
-                  <span className="btn-icon">🛍️</span>
+                  <span className="btn-icon">←</span>
                   <span className="btn-text">Go For Shopping</span>
                 </Link>
               </p>

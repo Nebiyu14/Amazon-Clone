@@ -10,7 +10,7 @@ export default function Loading({ message = "Please wait...", countdown = null }
 
     const interval = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) return countdown; // restart
+        if (prev <= 4) return countdown; // restart
         return prev - 1;
       });
     }, 1000);
