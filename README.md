@@ -1,6 +1,6 @@
 ## Amazon Clone (Full-Stack E-commerce Web App)
 
-A responsive full-stack Amazon-inspired e-commerce app with secure authentication, dynamic cart management, and integrated Stripe payments. Built using React, Express/Firebase, and modern deployment tools. The application provides a responsive and seamless shopping experience across all devices.
+A responsive full-stack Amazon-inspired e-commerce app with secure authentication, dynamic cart management, and integrated Stripe payments. Built using React, Express/Firebase, and modern deployment tools.
 
 ---
 
@@ -36,8 +36,6 @@ Any CVC
 
 > All other payment methods in test mode can accept dummy details, you won’t be charged.
 
-
-
 ## Tech Stack
 
 ### Frontend
@@ -62,7 +60,7 @@ Any CVC
 
 ### Database
 
-- Firestore _(planned for future implementation)_
+- Firestore (stores user orders and enables order history)
 
 ---
 
@@ -73,12 +71,6 @@ Any CVC
 - User Sign Up / Sign In / Sign Out
 - Password Reset (Forgot Password)
 - Persistent login state using Context API
-
-### Shopping Experience
-
-- Product listing (Fake Store API)
-- Category browsing
-- Product detail view
 
 ### Cart Management
 
@@ -95,28 +87,48 @@ Any CVC
 ### Order Flow
 
 - Order summary (subtotal, tax, shipping)
-- Redirect to success page after payment
-- Payment status handling (success / failure)
-- Cart cleared only after successful payment
+- Secure payment processing with Stripe
+- Redirect to success page with payment status
+- Orders stored in Firestore after successful payment
+- Cart cleared only after successful order storage
+
+### Orders & Persistence
+
+- Real-time order history page showing items, totals, and status fetched from database(Firestore) including user's past orders if available.
+- Orders sorted by latest (most recent first)
+
+### Protected Routes
+
+- Checkout/payment page is accessible only to registered users
+- Orders page is restricted to logged-in users
+- Unregistered users are redirected to login
+
+### Shopping Experience
+
+- Product listing (Fake Store API)
+- Category browsing
+- Product detail view
 
 ### UX Enhancements
 
 - Loading states
-- Toast notifications for feedback
-
+- Toast notifications
 
 ---
+
 ## Screenshots
 
 ### Home Page
+
 ![Home Page](./ClientSide/src/assets/screenshots/homepage.jpg)
 
 ### Checkout
+
 ![Checkout](./ClientSide/src/assets/screenshots/cartAndordersummary.jpg)
 
 ### Checkout / Payment
-![Payment methods](./ClientSide/src/assets/screenshots/payment%20methods.jpg)
----
+
+## ![Payment methods](./ClientSide/src/assets/screenshots/payment%20methods.jpg)
 
 ## Run Locally
 
@@ -192,7 +204,7 @@ VITE_BACKEND_BASE_URL=http://localhost:3000
 > If using Firebase Functions:
 
 ```env
-VITE_BACKEND_BASE_URL=your-project-id>/us-central1/api
+VITE_BACKEND_BASE_URL=<your-project-id>/us-central1/api
 ```
 
 Run frontend:
@@ -219,11 +231,7 @@ http://localhost:5005
 
 ---
 
-## Upcoming Improvements
 
-- Integrate Firestore database
-- Store and display user orders
-- Order history page
 
 ---
 
