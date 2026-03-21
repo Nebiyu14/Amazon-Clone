@@ -26,15 +26,25 @@ You can try out the payment flow safely using Stripe’s **test mode**.
 5. Follow the checkout instructions on the site.
 
 #### Test Card (for card payment only)
-
 > Use the following Stripe provided card details:
 
-```
-4242 4242 4242 4242
-```
+> **✅ Success**
+> ```
+> 4242 4242 4242 4242
+> ```
+>
+> **❌ Declined**
+> ```
+> 4000 0000 0000 0002
+> ```
+>
+> **🔐 3D Secure**
+> ```
+> 4000 0027 6000 3184
+> ```
 
-Any future date  
-Any CVC
+> Use any future expiration date and any CVC.
+
 
 > All other payment methods in test mode can accept dummy details, you won’t be charged.
 
