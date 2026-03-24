@@ -11,11 +11,11 @@ export default function Subheader() {
         `👋 Welcome back, ${firstName}!`,
         "Track your orders anytime from My Orders",
         "Your payments are 100% secure with Stripe",
-        "Add items, adjust quantities, remove anytime: full cart control",
+        "Add items, adjust quantities, remove anytime - full cart control",
         "Real-time order history, always up to date",
         "Multiple payment methods supported at checkout",
         "Full order summary with subtotal, tax & shipping before you pay",
-        "A lots of products, one destination — ClickCart",
+        "A lots of products, one destination - ClickCart",
       ]
     : [
         "Welcome to ClickCart, Shop Smarter",
@@ -29,7 +29,7 @@ export default function Subheader() {
         "A lots of products, one destination - ClickCart",
       ];
 
-  const repeated = [...contentsDisplay, ...contentsDisplay]; // Repeat the array to create a seamless marquee effect
+  const repeated = [...contentsDisplay, ...contentsDisplay]; // Repeat the array to create marquee effect
 
   return (
     <div className="sub__header__container">
