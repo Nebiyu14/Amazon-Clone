@@ -85,6 +85,7 @@ function Success() {
 
         {status === "success" && (
           <div className="success__content">
+            <p className="success__icon">✔</p>
             <p className="success__tag">Order Confirmed</p>
             <h1 className="success__title">Thank You for Your Purchase!</h1>
             <p className="success__message">

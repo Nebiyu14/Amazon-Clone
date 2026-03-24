@@ -1,7 +1,5 @@
 import "./header.css";
 import React, { useContext } from "react";
-import logo from "../../assets/Images/logo_amazon.png";
-import { CiLocationOn } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdSearch } from "react-icons/md";
 import { MdOutlineArrowDropDown } from "react-icons/md";
@@ -22,41 +20,27 @@ export default function Header() {
         <div className="header__leftside">
           <GiHamburgerMenu className="header__hamburger" />
           <Link to="/">
-            <img src={logo} alt="Amazon_Logo" className="header__logo" />
+            <div className="header__logo">
+              <span className="logo__click">Click</span>
+              <span className="logo__cart">Cart</span>
+            </div>
           </Link>
-          <div className="header__delivery">
-            <CiLocationOn size={24} />
-            <small>
-              Deliver to <br className="delivery__break" />
-              <strong>Poland</strong>
-            </small>
-          </div>
         </div>
         <div className="header__searchBox">
-          <div className="searchBox__category">
-            <select name="" id="">
-              <option value="">All</option>
-            </select>
-          </div>
           <div className="header__inputField">
-            <input type="text" placeholder="Search Amazon" />
+            <input type="text" placeholder="Search ClickCart" />
           </div>
           <div className="header__searchIcon">
             <MdSearch size={24} className="searchIcon" />
           </div>
         </div>
         <div className="header__rightside">
-          <div className="header__language">
-            <img src="https://flagcdn.com/w20/us.png" alt="English" />
-            <span>EN</span>
-            <MdOutlineArrowDropDown />
-          </div>
           <Link to={!user && "/signin"}>
             <div className="header__account">
               <p>
-                Hello, <span>{user ? currentUserNameEmail : "sign in"}</span>
+                Welcome, <span>{user ? currentUserNameEmail : "Guest"}</span>
                 <br />
-                <strong>Account & Lists</strong>
+                <strong>My Account</strong>
               </p>
               <MdOutlineArrowDropDown />
               {user && (
@@ -67,10 +51,10 @@ export default function Header() {
             </div>
           </Link>
           <Link to={"/orders"}>
-            <div className="header__return__orders">
+            <div className="header__orders">
               <p>
-                Returns <br />
-                <strong>& Orders</strong>
+                My <br />
+                <strong>Orders</strong>
               </p>
             </div>
           </Link>

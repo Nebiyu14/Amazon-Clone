@@ -1,13 +1,13 @@
-## Amazon Clone (Full-Stack E-commerce Web App)
+## ClickCart (Full-Stack E-commerce Web App)
 
-A responsive full-stack Amazon-inspired e-commerce app with secure authentication, dynamic cart management, and integrated Stripe payments. Built using React, Express/Firebase, and modern deployment tools.
+A responsive full-stack e-commerce app with secure authentication, dynamic cart management, and integrated Stripe payments. Built using React, Express/Firebase, and modern deployment tools.
 
 ---
 
 ## Live URLs
 
-- **Frontend (Vercel):** <a href="https://amazon-clone-xi-one.vercel.app" target="_blank" rel="noopener noreferrer">View Web App</a>
-- **Backend (Render):** <a href="https://amazon-clone-6ugt.onrender.com" target="_blank" rel="noopener noreferrer">Express Server</a>
+- **Frontend (Vercel):** <a href="https://clickcart26.vercel.app" target="_blank" rel="noopener noreferrer">View Web App</a>
+- **Backend (Render):** <a href="https://clickcart-a486.onrender.com" target="_blank" rel="noopener noreferrer">Express Server</a>
 
 ---
 
@@ -140,15 +140,15 @@ You can try out the payment flow safely using Stripe’s **test mode**.
 
 ### Checkout / Payment
 
-## ![Payment methods](./ClientSide/src/assets/screenshots/payment%20methods.jpg)
+## ![Payment methods](./ClientSide/src/assets/screenshots/paymentMethods.jpg)
 
 ## Run Locally
 
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/Nebiyu14/Amazon-Clone.git
-cd Amazon-Clone
+git clone https://github.com/Nebiyu14/clickcart.git
+cd clickcart
 ```
 
 ---

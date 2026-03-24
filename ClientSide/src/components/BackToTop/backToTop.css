@@ -1,9 +1,7 @@
 .back__to__top {
-  background-color: hsla(213, 28%, 19%, 0.925);
+  background-color: #1a2e4a;
   padding: 10px 0;
   margin: 0 auto;
-  /* display: flex; */
-  /* justify-content: center; */
   text-align: center;
 }
 
@@ -16,6 +14,6 @@
 }
 
 .back__to__top:hover {
-  background-color: hsla(213, 28%, 19%, 0.88);
+    background-color: #1a2e4add;
   cursor: pointer;
 }

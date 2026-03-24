@@ -10,7 +10,7 @@
 .header__container {
   display: flex;
   align-items: center;
-  background-color: #151820;
+  background-color: #0f1f38;
   padding: 5px 16px;
   white-space: nowrap;
 }
@@ -22,48 +22,40 @@
 .header__leftside {
   display: flex;
   align-items: center;
-  /* flex: 1; */
   min-width: 0;
 }
 
-.header__leftside img {
-  max-width: 100px;
-  height: auto;
-  padding: 10px;
-  border: 1px solid transparent;
-}
-
-.header__leftside img:hover {
-  border: 1px solid white;
-  cursor: pointer;
-}
-
-/* ===============================
-   Delivery Section
-   =============================== */
-
-.header__delivery {
+/* ClickCart Text Logo */
+.header__logo {
   display: flex;
   align-items: center;
-  gap: 4px;
-  color: white;
-  padding: 10px 0;
+  padding: 8px 10px;
   border: 1px solid transparent;
-}
-
-.header__delivery:hover {
-  border: 1px solid white;
+  text-decoration: none;
   cursor: pointer;
+  user-select: none;
 }
 
-.header__delivery small {
-  font-size: 10px;
-  line-height: 1.2;
+.header__logo:hover {
+  border: 1px solid white;
 }
 
-.header__delivery strong {
-  font-size: 12px;
-  font-weight: 600;
+.logo__click {
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.logo__cart {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2dd4bf;
+  letter-spacing: -0.5px;
+}
+
+.header__leftside a {
+  text-decoration: none;
 }
 
 /* ===============================
@@ -83,19 +75,7 @@
 
 .header__searchBox:hover,
 .header__searchBox:focus {
-  box-shadow: 0 0 10px pink;
-}
-
-/* Category Select */
-
-.searchBox__category select {
-  border: none;
-  outline: none;
-  padding: 10px 8px;
-  background-color: #f3f3f3;
-  border-right: 1px solid #ccc;
-  font-size: 14px;
-  cursor: pointer;
+  box-shadow: 0 0 10px #2dd4bf;
 }
 
 /* Input Field */
@@ -119,14 +99,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #febd69;
+  background-color: #2dd4bf;
   padding: 8px 12px;
   cursor: pointer;
-  color: black;
+  color: white;
+}
+
+.header__searchIcon:hover {
+  background-color: #14b8a6;
 }
 
 /* ===============================
-   Right Side (Language, Account, Orders, Cart)
+   Right Side (Account, Orders, Cart)
    =============================== */
 
 .header__rightside {
@@ -140,24 +124,6 @@
 .header__rightside a {
   text-decoration: none;
   color: white;
-}
-/* Language */
-
-.header__language {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  padding: 15px 0;
-  border: 1px solid transparent;
-}
-
-.header__language img {
-  height: 14px;
-}
-
-.header__language:hover {
-  border: 1px solid white;
 }
 
 /* Account */
@@ -175,18 +141,19 @@
 }
 
 .header__logout {
-  color: rgba(149, 201, 243);
-  background-color: #151820;
-  background-color: rgb(149, 200, 243, 0.328);
-  padding: 5px;
+  color: #2dd4bf;
+  color: red;
+  background-color: hsla(0, 0%, 0%, 0.769);
+  padding: 5px 20px;
+  border-radius: 0 0 6px 6px;
   font-size: 14px;
   position: absolute;
   top: 3.5em;
   left: 5.4em;
   text-align: end;
-  /* border-radius: 0 0 4px 4px; */
   cursor: pointer;
   display: none;
+  z-index: 100;
 }
 
 .header__account:hover .header__logout {
@@ -194,28 +161,28 @@
 }
 
 .header__logout:hover {
-  color: rgb(4, 123, 220);
+  color: #14b8a6;
 }
 
-.header__return__orders {
+.header__orders {
   padding: 10px 0;
   border: 1px solid transparent;
 }
 
-.header__return__orders:hover {
+.header__orders:hover {
   border: 1px solid white;
   cursor: pointer;
 }
 
 .header__account p,
-.header__return__orders p {
+.header__orders p {
   font-size: 12px;
   line-height: 1.2;
   font-weight: lighter;
 }
 
 .header__account strong,
-.header__return__orders strong {
+.header__orders strong {
   font-weight: 700;
 }
 
@@ -245,7 +212,7 @@
   position: absolute;
   right: 30px;
   top: -2px;
-  color: #fb8114;
+  color: #2dd4bf;
 }
 
 .header__hamburger {
@@ -256,7 +223,6 @@
 MEDIA QUERY : Mobile view
 ================================== */
 @media (max-width: 768px) {
-  /*  Reset the container to wrap */
   .header__container {
     flex-wrap: wrap;
   }
@@ -276,16 +242,9 @@ MEDIA QUERY : Mobile view
     cursor: pointer;
   }
 
-  .header__leftside img {
-    max-width: 80px;
-    height: auto;
-    padding: 5px;
-  }
-
-  /* .header__return__orders, */
-  .header__delivery,
-  .header__language {
-    display: none;
+  .logo__click,
+  .logo__cart {
+    font-size: 18px;
   }
 
   .header__searchBox {

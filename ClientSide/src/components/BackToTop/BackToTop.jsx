@@ -10,7 +10,7 @@ function BackToTop() {
   };
   return (
     <div className="back__to__top">
-      <button onClick={handleClick}>Back to top</button>
+      <button onClick={handleClick}>Go Up ↑</button>
     </div>
   );
 }

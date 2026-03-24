@@ -6,9 +6,9 @@ import Footer from "../footer/Footer";
 
 function Layout({ children }) {
   return (
-    <div>
+    <div className="layout_container">
       <Header />
-      {children}
+      <main className="layout_main">{children}</main>
       <Footer />
     </div>
   );

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./signin.css";
-import amazon_logo from "../../assets/Images/logo_amazon_black.png";
 import useAuth from "../../hooks/useAuth";
 import { ClipLoader } from "react-spinners";
 import { Link, useLocation } from "react-router-dom";
@@ -8,9 +7,10 @@ import { toast } from "react-toastify";
 import Layout from "../../components/layout/Layout";
 
 function Signin() {
-  const protectedRouteMessage = useLocation();  //access the message and redirect info sent from ProtectedRoutes component
+  const protectedRouteMessage = useLocation();
   const { message, redirect } = protectedRouteMessage?.state || {};
   const [authMode, setAuthMode] = useState("signin");
+
   const {
     login,
     createAccount,
@@ -19,6 +19,7 @@ function Signin() {
     setError,
     isLoading,
   } = useAuth();
+
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -33,20 +34,15 @@ function Signin() {
     e.preventDefault();
     const { email, password } = userCredentials;
 
-    //signin
     if (authMode === "signin") {
       login(email, password, redirect);
-    }
-
-    //signup
-    if (authMode === "signup") {
+    } else {
       createAccount(email, password, redirect);
     }
   };
 
-  //reset password
   const handleForgotPassword = () => {
-    const emailRequired = prompt("Please enter your email to reset password");
+    const emailRequired = prompt("Enter your email to reset password");
     if (!emailRequired) return toast.info("Email is required!");
     handleResetPassword(emailRequired);
   };
@@ -58,91 +54,78 @@ function Signin() {
       [e.target.name]: e.target.value,
     }));
   };
+
   return (
     <Layout>
       <div className="account__page__container">
-        <div className="account__page__logo">
-          <Link to={"/"}>
-            <img src={amazon_logo} alt="" />
-          </Link>
-        </div>
+        <Link to="/" className="account__page__logo">
+          <span className="account__page__logo__click">Click</span>
+          <span className="account__page__logo__cart">Cart</span>
+        </Link>
 
         <div className="account__page__card">
-          <div className="account__page__title">
-            <h2>Sign In or Create Account</h2>
-          </div>
-          {message && <p style={{ color: "red" }}>{message}</p>}
-          <div className="account__page__form_sect">
-            <form action="" onSubmit={handleSubmit}>
-              <div className="account__page__error">{error}</div>
-              <div className="account__page__inputs">
-                <label htmlFor="email">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  value={userCredentials.email}
-                  name="email"
-                  onChange={(e) => handleInput(e)}
-                />
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Enter the password"
-                  name="password"
-                  value={userCredentials.password}
-                  onChange={(e) => handleInput(e)}
-                />
-              </div>
-              <div className="account__page__password__reset">
-                <p onClick={handleForgotPassword}>Forgot password?</p>
-              </div>
-              <div className="account__page__terms_condition">
-                <p>
-                  By continuing, you agree to Amazon's clone
-                  <span>Condition's of Use</span> and
-                  <span> Privacy Notice</span>.
-                </p>
-              </div>
-              <div className="account__page__btn">
-                <button type="submit" disabled={isLoading}>
-                  {isLoading ? (
-                    <ClipLoader
-                      color="#050505ff"
-                      size={16}
-                      speedMultiplier={1}
-                    />
-                  ) : authMode === "signin" ? (
-                    "Sign In"
-                  ) : (
-                    "Sign Up"
-                  )}
-                </button>
-              </div>
-            </form>
-          </div>
-          <hr />
-          <div className="account__page__user__states">
+          <h2 className="account__page__title">
+            {authMode === "signin" ? "Sign In" : "Create Account"}
+          </h2>
+
+          {message && <p className="account__page__message">{message}</p>}
+
+          <form onSubmit={handleSubmit}>
+            <div className="account__page__error">{error}</div>
+
+            <label>Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={userCredentials.email}
+              onChange={handleInput}
+            />
+
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={userCredentials.password}
+              onChange={handleInput}
+            />
+
+            <p className="account__page__forgot" onClick={handleForgotPassword}>
+              Forgot password?
+            </p>
+
+            <p className="account__page__terms">
+              By continuing, you agree to ClickCart’s <span>Terms</span> and{" "}
+              <span>Privacy Policy</span>.
+            </p>
+
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? (
+                <ClipLoader color="#ffffff" size={16} />
+              ) : authMode === "signin" ? (
+                "Sign In"
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+          </form>
+
+
+          <div className="account__page__switch">
             {authMode === "signin" ? (
               <p>
-                New to Amazon?{" "}
+                New to ClickCart?{" "}
                 <span onClick={handleSignInCreateAccount}>
-                  {" "}
                   Create an account
                 </span>
               </p>
             ) : (
               <p>
-                Have an account already?{" "}
-                <span onClick={handleSignInCreateAccount}> Sign in</span>
+                Already have an account?{" "}
+                <span onClick={handleSignInCreateAccount}>Sign in</span>
               </p>
             )}
-            <div className="account__page__need__help">
-              <p title="You can create and login with any fake email looking ID.">
-                Need Help?
-              </p>
-            </div>
           </div>
         </div>
       </div>

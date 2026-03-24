@@ -1,130 +1,132 @@
 .account__page__container {
-  color: black;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin: 0 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px 10px;
+  color: #0f1f38;
 }
 
 .account__page__logo {
+  display: flex;
   margin-bottom: 20px;
+  text-decoration: none;
 }
 
-.account__page__logo img {
-  width: 100px;
+.account__page__logo__click {
+  font-size: 26px;
+  font-weight: 800;
+  color: #0f1f38;
+}
+
+.account__page__logo__cart {
+  font-size: 26px;
+  font-weight: 800;
+  color: #2dd4bf;
 }
 
 .account__page__card {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  width: 100%;
   max-width: 400px;
-  flex-shrink: 1;
-  height: auto;
-  text-align: start;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 2px black;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .account__page__title {
-  font-size: clamp(16px, 3vw, 16px);
+  margin-bottom: 15px;
 }
 
-.account__page__form_sect form {
+.account__page__card form {
   display: flex;
   flex-direction: column;
 }
 
-.account__page__inputs {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.account__page__card label {
+  font-weight: 600;
+  margin-top: 10px;
 }
 
-.account__page__inputs input {
-  padding: 10px 0;
-  border-radius: 10px;
-  border: none;
+.account__page__card input {
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   outline: none;
-  border: 1px solid black;
-  padding-left: 15px;
-  margin-bottom: 10px;
-  font-size: clamp(12px, 4vw, 16px);
 }
 
-.account__page__inputs label {
-  font-weight: bolder;
+.account__page__card input:focus {
+  border: 1px solid #2dd4bf;
+  box-shadow: 0 0 5px #2dd4bf;
 }
 
 .account__page__error {
   color: red;
   min-height: 20px;
-
 }
 
-.account__page__password__reset{
-  margin-left: auto;
-}
-
-.account__page__password__reset p:hover{
-text-decoration: underline;
-color: blue;
-cursor: pointer;
-}
-
-.account__page__terms_condition {
-  margin: 10px 0;
-}
-
-.account__page__terms_condition span {
-  color: blue;
-  user-select: none;
+.account__page__forgot {
+  margin-top: 8px;
+  text-align: right;
   cursor: pointer;
+  color: #2dd4bf;
 }
 
-.account__page__terms_condition span:hover {
+.account__page__forgot:hover {
   text-decoration: underline;
 }
 
-.account__page__btn {
-  width: 100%;
-  text-align: center;
-  margin: 10px 0;
+.account__page__terms {
+  font-size: 14px;
+  margin: 12px 0;
 }
 
-.account__page__btn button {
-  width: 100%;
-  background-color: goldenrod;
-  border: none;
-  border-radius: 15px;
+.account__page__terms span {
+  color: #2dd4bf;
+  cursor: pointer;
+}
+
+.account__page__terms span:hover {
+  text-decoration: underline;
+}
+
+.account__page__card button {
+  margin-top: 10px;
   padding: 10px;
-  font-size: clamp(12px, 4vw, 16px);
+  border: none;
+  border-radius: 10px;
+  background-color: #2dd4bf;
+  background-color: goldenrod;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.account__page__card button:active {
+  background-color: #14b8a6;
+  background-color: rgba(218, 165, 32, 0.836);
+}
+
+.account__page__card button:hover {
+  transform: scale(1.02);
+  background-color: #14b8a6;
+  background-color: rgba(218, 165, 32, 0.836);
+}
+
+.account__page__switch {
+  margin-top: 10px;
+}
+
+.account__page__switch span {
+  color: #2dd4bf;
   cursor: pointer;
 }
 
-.account__page__btn button:active {
-  transform: scaleX(1.008);
-}
-
-.account__page__user__states {
-  display: flex;
-  justify-content: space-between;
-}
-
-.account__page__need__help {
-  margin-left: auto;
-}
-
-.account__page__user__states span {
-  color: blue;
-  user-select: none;
-  cursor: pointer;
-}
-
-.account__page__user__states span:hover {
+.account__page__switch span:hover {
   text-decoration: underline;
+}
+
+.account__page__message {
+  color: red;
 }
