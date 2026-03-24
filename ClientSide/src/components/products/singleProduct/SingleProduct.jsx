@@ -31,7 +31,7 @@ function SingleProduct({ individualItem }) {
           <div className="product__image">
             <img src={individualItem.image} alt="" />
           </div>
-          <div className="single__product__title" title={individualItem.title}>
+          <div className="single__product__title">
             <p>{individualItem.title}</p>
           </div>
           <div className="product__rating">
