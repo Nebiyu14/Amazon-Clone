@@ -85,7 +85,6 @@ function Success() {
 
         {status === "success" && (
           <div className="success__content">
-            <div className="success__icon">&#10003;</div>
             <p className="success__tag">Order Confirmed</p>
             <h1 className="success__title">Thank You for Your Purchase!</h1>
             <p className="success__message">
@@ -102,9 +101,15 @@ function Success() {
 
         {status === "processing" && <h2>Payment is processing...</h2>}
 
-        {status === "failed" && <h2>Payment failed. Please try again.</h2>}
+        {status === "failed" && (
+          <h2 className="success__status__failed">
+            Payment failed. Please try again.
+          </h2>
+        )}
 
-        {status === "error" && <h2>Something went wrong.</h2>}
+        {status === "error" && (
+          <h2 className="success__status__error">Something went wrong.</h2>
+        )}
       </div>
     </Layout>
   );
