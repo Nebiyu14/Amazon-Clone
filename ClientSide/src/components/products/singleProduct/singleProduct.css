@@ -22,7 +22,8 @@
 }
 
 .single__product__title {
-  font-size: clamp(12px, 2.5vw, 20px);
+  font-size: clamp(10px, 2vw, 12px);
+  /* font-size: 5px; */
   font-weight: 700;
   margin: 5px 0;
   text-overflow: ellipsis;

@@ -16,7 +16,7 @@ function Footer() {
         <p>
           Built by{" "}
           <Link
-            to="https://github.com/Nebiyu14/"
+            to="https://portfolio-nebiyu.vercel.app/"
             target="_blank"
             className="footer_author_link"
           >
