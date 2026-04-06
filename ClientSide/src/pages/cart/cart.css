@@ -99,15 +99,16 @@
   border-color: rgba(128, 128, 128, 0.196);
 }
 
-.cart__page__proceed_to_checkout {
-}
-
 .cart__page__proceed_to_checkout button {
   background: #ffce12;
   padding: 10px 20px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
+}
+
+.cart__page__proceed_to_checkout button:disabled {
+  cursor: not-allowed;
 }
 
 /* ============================

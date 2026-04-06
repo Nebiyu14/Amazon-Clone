@@ -60,7 +60,7 @@ function Cart() {
               disabled={state.cart.length === 0}
               title={
                 state.cart.length === 0
-                  ? "Add items to cart to proceed"
+                  ? "Add item to cart to proceed"
                   : "Proceed to checkout"
               }
             >
